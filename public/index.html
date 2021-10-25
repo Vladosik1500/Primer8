@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>React</title>
+    <script src="https://unpkg.com/react@16.0.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.0.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script type="text/babel">
+      class DisplayNumber extends React.Component {
+        render() {
+          var style = {
+            fontSize: "30px",
+            fontFamily: "sans-serif",
+            color: "#FFFFFF",
+            fontWeight: "bold",
+            marginBottom: "20px"
+          };
+          return <div style={style}>{this.props.number}</div>;
+        }
+      }
+
+      class CounterWrapper extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            counter: 0
+          };
+          this.increase = this.increase.bind(this);
+        }
+
+        increase(e) {
+          this.setState({
+            counter: this.state.counter + 1
+          });
+        }
+        render() {
+          var style = {
+            width: "300px",
+            textAlign: "center",
+            backgroundColor: "#777777",
+            padding: "20px",
+            fontFamily: "sans-serif",
+            color: "#FFFFFF",
+            borderRadius: "10px"
+          };
+          return (
+            <div style={style}>
+              <p>Количество нажатий на кнопку</p>
+              <DisplayNumber number={this.state.counter} />
+              <button onClick={this.increase}>Увеличить</button>
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(<CounterWrapper />, document.querySelector("#container"));
+    </script>
+  </body>
+</html>
